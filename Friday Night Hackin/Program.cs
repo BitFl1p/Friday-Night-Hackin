@@ -32,10 +32,10 @@ namespace Friday_Night_Hackin
             {
                 switch (ReadKey().Key)
                 {
-                    case ConsoleKey.RightArrow: input = 1; break;
+                    case ConsoleKey.LeftArrow: input = 1; break;
                     case ConsoleKey.DownArrow: input = 2; break;
                     case ConsoleKey.UpArrow: input = 3; break;
-                    case ConsoleKey.LeftArrow: input = 4; break;
+                    case ConsoleKey.RightArrow: input = 4; break;
                 }
             }
         }
