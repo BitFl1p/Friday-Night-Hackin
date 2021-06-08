@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Friday_Night_Hackin</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Sounds\Bopeebo.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Sounds\Bopeebo.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Windows.Extensions" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>
