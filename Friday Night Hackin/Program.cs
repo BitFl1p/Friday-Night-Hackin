@@ -2,6 +2,8 @@
 using static System.Console;
 using System.Media;
 using System.Timers;
+using System.Diagnostics;
+using static System.Threading.Thread;
 
 
 
@@ -10,11 +12,16 @@ namespace Friday_Night_Hackin
 
     class Program
     {
-       
-        private static int[] notes = { 3, 0, 4, 0, 4, 0, 0, 0, 3, 0, 4, 0, 4, 0, 0, 0 };
+        private static int tempo = 100;
+        private static string output;
+        private static bool bouttaHit;
+        private static int[] notes = { 3, 0, 4, 0, 4, 0, 0, 0, 3, 0, 4, 0, 4, 0, 0, 0, 2, 0, 1, 0, 4, 0, 0, 0, 2, 0, 1, 0, 4, 0, 0, 0, 2, 0, 4, 1, 2, 0, 0, 0, 2, 0, 4, 1, 2, 0, 0, 0, 4, 2, 0, 1, 3, 0, 0, 0, 4, 2, 0, 1, 3, 0, 0, 0, 1, 4, 2, 0, 0, 0, 0, 0, 1, 4, 2, 0, 0, 0, 0, 0, 2, 4, 1, 0, 0, 0, 0, 0, 2, 4, 1, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 1, 4, 0, 3, 2, 0, 0, 0, 1, 4, 0, 3, 2, 0, 0, 0, 0, 3, 0, 4, 0, 1, 0, 0, 0, 3, 0, 4, 0, 1, 0, 0, 0, 2, 0, 3, 0, 2, 2, 3, 0, 2, 0, 3, 0, 2, 2, 3, 0, 3, 0, 4, 0, 1, 0, 0, 0, 3, 0, 4, 0, 1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 0, 3, 1, 4, 0, 3, 2, 0, 3, 1, 4, 0, 3, 2, 0, 0, 0, 3, 4, 1, 3, 2, 0, 0, 0, 3, 4, 1, 3, 2, 0, 0, 0, 3, 1, 4, 0, 3, 2, 0, 0, 3, 1, 4, 0, 3, 2, 0, 0, 0, 0, 0, 0 };
         private static int cycles = 0;
         private static Timer aTimer;
         private static int input;
+        public static bool hit;
+        public static bool detectingHit;
+        private static Stopwatch stopWatch = new Stopwatch();
 
         static void Main(string[] args)
         {
@@ -23,29 +30,79 @@ namespace Friday_Night_Hackin
             SoundPlayer player = new SoundPlayer();
             player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + @"\Sounds\Bopeebo.wav";
             player.Play();
-            aTimer = new System.Timers.Timer();
-            aTimer.Interval = 275;
+            aTimer = new Timer();
+            aTimer.Interval = 60000 / (tempo*2);
             aTimer.Elapsed += UpdateScreen;
             aTimer.AutoReset = true;
             aTimer.Enabled = true;
             while (true) 
             {
-                switch (ReadKey().Key)
-                {
-                    case ConsoleKey.LeftArrow: input = 1; break;
-                    case ConsoleKey.DownArrow: input = 2; break;
-                    case ConsoleKey.UpArrow: input = 3; break;
-                    case ConsoleKey.RightArrow: input = 4; break;
-                }
+                Input();
             }
+
+        }
+
+        private static void Input()
+        {
+            if (bouttaHit)
+            {
+                detectingHit = true;
+                stopWatch.Start();
+                if (stopWatch.Elapsed.TotalMilliseconds >= 225)
+                {
+                    switch (ReadKey().Key)
+                    {
+                        case ConsoleKey.LeftArrow: input = 1; break;
+                        case ConsoleKey.DownArrow: input = 2; break;
+                        case ConsoleKey.UpArrow: input = 3; break;
+                        case ConsoleKey.RightArrow: input = 4; break;
+                        default: input = 0; break;
+                    }
+
+                    if (input != 0)
+                    {
+                        if (notes[(cycles - 1)] == input)
+                        {
+                            hit = true;
+                        }
+                        else
+                        {
+                            hit = false;
+                        }
+                        bouttaHit = false;
+                        stopWatch.Stop();
+                        stopWatch.Reset();
+                    }
+                    if (stopWatch.Elapsed.TotalMilliseconds >= 325)
+                    {
+                        stopWatch.Stop();
+                        stopWatch.Reset();
+                        hit = false;
+                        bouttaHit = false;
+                    }
+                    else
+                    {
+                        stopWatch.Stop();
+                        stopWatch.Reset();
+                        input = 0;
+                    }
+                }
+
+
+            }
+
+
         }
         private static void UpdateScreen(Object source, System.Timers.ElapsedEventArgs e)
         {
-            
+            if (notes[(cycles)] != 0)
+            {
+                bouttaHit = true;
+            }
             cycles++;
             Clear();
             SetCursorPosition(0, 0);
-            string output = @"
+            output = @"
      ::::          ::           ::          :::      
     :sss:          ss         :ssss:        :sss:    
   :ssssss:::   ss:ssss:ss   :ssssssss:   :::ssssss:  
@@ -54,9 +111,9 @@ namespace Friday_Night_Hackin
       :::          ::           ::          :::    
 
 ";          if (cycles + 3 > notes.Length) return;
-            if(notes[(cycles-1)] != 0)
+            if (detectingHit)
             {
-                if(notes[(cycles - 1)] == input)
+                if (hit)
                 {
                     output = @"
      ::::          ::           ::          :::      
@@ -80,12 +137,12 @@ namespace Friday_Night_Hackin
 
 ";
                 }
+                detectingHit = false;
             }
-
             output += ScrollArrows(notes[(cycles)]);
             output += ScrollArrows(notes[(cycles+1)]);
             output += ScrollArrows(notes[(cycles+2)]);
-
+            WriteLine(stopWatch.Elapsed.TotalMilliseconds);
             WriteLine(output);
 
         }

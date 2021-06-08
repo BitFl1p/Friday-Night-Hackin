@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\511097\\source\\repos\\Friday Night Hackin\\Friday Night Hackin\\Friday Night Hackin.csproj": {}
+    "C:\\Users\\jumic\\Desktop\\c#\\Friday Night Hackin\\Friday Night Hackin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\511097\\source\\repos\\Friday Night Hackin\\Friday Night Hackin\\Friday Night Hackin.csproj": {
+    "C:\\Users\\jumic\\Desktop\\c#\\Friday Night Hackin\\Friday Night Hackin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\511097\\source\\repos\\Friday Night Hackin\\Friday Night Hackin\\Friday Night Hackin.csproj",
+        "projectUniqueName": "C:\\Users\\jumic\\Desktop\\c#\\Friday Night Hackin\\Friday Night Hackin.csproj",
         "projectName": "Friday Night Hackin",
-        "projectPath": "C:\\Users\\511097\\source\\repos\\Friday Night Hackin\\Friday Night Hackin\\Friday Night Hackin.csproj",
-        "packagesPath": "C:\\Users\\511097\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\511097\\source\\repos\\Friday Night Hackin\\Friday Night Hackin\\obj\\",
+        "projectPath": "C:\\Users\\jumic\\Desktop\\c#\\Friday Night Hackin\\Friday Night Hackin.csproj",
+        "packagesPath": "C:\\Users\\jumic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jumic\\Desktop\\c#\\Friday Night Hackin\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\511097\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jumic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +30,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +42,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "System.Windows.Extensions": {
               "target": "Package",
@@ -58,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

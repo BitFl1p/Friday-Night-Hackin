@@ -1,0 +1,22 @@
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\Friday Night Hackin.exe
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\Sounds\Bopeebo.wav
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\Friday Night Hackin.deps.json
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\Friday Night Hackin.runtimeconfig.json
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\Friday Night Hackin.runtimeconfig.dev.json
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\Friday Night Hackin.dll
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\Friday Night Hackin.pdb
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\System.Windows.Extensions.dll
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\bin\x64\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\obj\x64\Release\netcoreapp3.1\Friday Night Hackin.csprojAssemblyReference.cache
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\obj\x64\Release\netcoreapp3.1\Friday Night Hackin.AssemblyInfoInputs.cache
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\obj\x64\Release\netcoreapp3.1\Friday Night Hackin.AssemblyInfo.cs
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\obj\x64\Release\netcoreapp3.1\Friday Night Hackin.csproj.CoreCompileInputs.cache
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\obj\x64\Release\netcoreapp3.1\Friday Night Hackin.csproj.CopyComplete
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\obj\x64\Release\netcoreapp3.1\Friday Night Hackin.dll
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\obj\x64\Release\netcoreapp3.1\Friday Night Hackin.pdb
+C:\Users\jumic\Desktop\c#\Friday Night Hackin\obj\x64\Release\netcoreapp3.1\Friday Night Hackin.genruntimeconfig.cache
