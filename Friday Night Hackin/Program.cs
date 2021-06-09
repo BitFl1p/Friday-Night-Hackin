@@ -15,17 +15,18 @@ namespace Friday_Night_Hackin
         private static int tempo = 100;
         private static string output;
         private static bool bouttaHit;
-        private static int[] notes = { 3, 0, 4, 0, 4, 0, 0, 0, 3, 0, 4, 0, 4, 0, 0, 0, 2, 0, 1, 0, 4, 0, 0, 0, 2, 0, 1, 0, 4, 0, 0, 0, 2, 0, 4, 1, 2, 0, 0, 0, 2, 0, 4, 1, 2, 0, 0, 0, 4, 2, 0, 1, 3, 0, 0, 0, 4, 2, 0, 1, 3, 0, 0, 0, 1, 4, 2, 0, 0, 0, 0, 0, 1, 4, 2, 0, 0, 0, 0, 0, 2, 4, 1, 0, 0, 0, 0, 0, 2, 4, 1, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 1, 4, 0, 3, 2, 0, 0, 0, 1, 4, 0, 3, 2, 0, 0, 0, 0, 3, 0, 4, 0, 1, 0, 0, 0, 3, 0, 4, 0, 1, 0, 0, 0, 2, 0, 3, 0, 2, 2, 3, 0, 2, 0, 3, 0, 2, 2, 3, 0, 3, 0, 4, 0, 1, 0, 0, 0, 3, 0, 4, 0, 1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 0, 3, 1, 4, 0, 3, 2, 0, 3, 1, 4, 0, 3, 2, 0, 0, 0, 3, 4, 1, 3, 2, 0, 0, 0, 3, 4, 1, 3, 2, 0, 0, 0, 3, 1, 4, 0, 3, 2, 0, 0, 3, 1, 4, 0, 3, 2, 0, 0, 0, 0, 0, 0 };
+        private static int[] notes = { 3, 0, 4, 0, 4, 0, 0, 0, 3, 0, 4, 0, 4, 0, 0, 0, 2, 0, 1, 0, 4, 0, 0, 0, 2, 0, 1, 0, 4, 0, 0, 0, 2, 0, 4, 1, 2, 0, 0, 0, 2, 0, 4, 1, 2, 0, 0, 0, 4, 2, 0, 1, 3, 0, 0, 0, 4, 2, 0, 1, 3, 0, 0, 0, 1, 4, 2, 0, 0, 0, 0, 0, 1, 4, 2, 0, 0, 0, 0, 0, 2, 4, 1, 0, 0, 0, 0, 0, 2, 4, 1, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 1, 4, 0, 3, 2, 0, 0, 0, 1, 4, 0, 3, 2, 0, 0, 0, 0, 3, 0, 4, 0, 1, 0, 0, 0, 3, 0, 4, 0, 1, 0, 0, 0, 2, 0, 3, 0, 2, 2, 3, 0, 2, 0, 3, 0, 2, 2, 3, 0, 3, 0, 4, 0, 1, 0, 0, 0, 3, 0, 4, 0, 1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 0, 3, 4, 1, 0, 0, 0, 0, 3, 1, 4, 0, 3, 2, 0, 0, 3, 1, 4, 0, 3, 2, 0, 0, 0, 3, 4, 1, 3, 2, 0, 0, 0, 3, 4, 1, 3, 2, 0, 0, 3, 1, 4, 0, 3, 2, 0, 0, 3, 1, 4, 0, 3, 2, 0, 0, 0, 0, 0, 0 };
         private static int cycles = 0;
         private static Timer aTimer;
         private static int input;
         public static bool hit;
         public static bool detectingHit;
         private static Stopwatch stopWatch = new Stopwatch();
+        private static int score = 0;
 
         static void Main(string[] args)
         {
-            SetWindowSize(90,50);
+            SetWindowSize(Math.Min(LargestWindowWidth,90), Math.Min(LargestWindowHeight, 50));
             SetWindowPosition(0,0);
             SoundPlayer player = new SoundPlayer();
             player.SoundLocation = AppDomain.CurrentDomain.BaseDirectory + @"\Sounds\Bopeebo.wav";
@@ -42,59 +43,62 @@ namespace Friday_Night_Hackin
 
         }
 
-        private static void Input()
+        private async static void Input()
         {
-            if (bouttaHit)
+            if (!bouttaHit || stopWatch.Elapsed.TotalMilliseconds >= 325)
             {
-                detectingHit = true;
+                if (bouttaHit)
+                {
+                    detectingHit = true;
+                    bouttaHit = false;
+                }
+                else detectingHit = false;
+                stopWatch.Stop();
+                stopWatch.Reset();
+                hit = false;
+            }
+            else
+            {
                 stopWatch.Start();
                 if (stopWatch.Elapsed.TotalMilliseconds >= 225)
                 {
-                    switch (ReadKey().Key)
-                    {
-                        case ConsoleKey.LeftArrow: input = 1; break;
-                        case ConsoleKey.DownArrow: input = 2; break;
-                        case ConsoleKey.UpArrow: input = 3; break;
-                        case ConsoleKey.RightArrow: input = 4; break;
-                        default: input = 0; break;
-                    }
-
-                    if (input != 0)
-                    {
-                        if (notes[(cycles - 1)] == input)
-                        {
-                            hit = true;
-                        }
-                        else
-                        {
-                            hit = false;
-                        }
-                        bouttaHit = false;
-                        stopWatch.Stop();
-                        stopWatch.Reset();
-                    }
-                    if (stopWatch.Elapsed.TotalMilliseconds >= 325)
-                    {
-                        stopWatch.Stop();
-                        stopWatch.Reset();
-                        hit = false;
-                        bouttaHit = false;
-                    }
+                    //WriteLine(stopWatch.Elapsed.TotalMilliseconds);
+                    if (KeyAvailable == false) return;
                     else
                     {
-                        stopWatch.Stop();
-                        stopWatch.Reset();
-                        input = 0;
+                        detectingHit = true;
+                        switch (ReadKey().Key)
+                        {
+                            case ConsoleKey.LeftArrow: input = 1; break;
+                            case ConsoleKey.DownArrow: input = 2; break;
+                            case ConsoleKey.UpArrow: input = 3; break;
+                            case ConsoleKey.RightArrow: input = 4; break;
+                        }
+                        if (input != 0)
+                        {
+                            if (notes[(cycles - 1)] == input)
+                            {
+                                hit = true;
+                            }
+                            else
+                            {
+                                hit = false;
+                            }
+                            detectingHit = true;
+                            bouttaHit = false;
+                            stopWatch.Stop();
+                            stopWatch.Reset();
+                        }
                     }
                 }
 
-
-            }
+            } 
 
 
         }
-        private static void UpdateScreen(Object source, System.Timers.ElapsedEventArgs e)
+        private static async void UpdateScreen(Object source, System.Timers.ElapsedEventArgs e)
         {
+            if (cycles + 3 > notes.Length) return;
             if (notes[(cycles)] != 0)
             {
                 bouttaHit = true;
@@ -110,11 +114,12 @@ namespace Friday_Night_Hackin
     :sss:        :ssss:         ss          :sss:    
       :::          ::           ::          :::    
 
-";          if (cycles + 3 > notes.Length) return;
+";          
             if (detectingHit)
             {
                 if (hit)
                 {
+                    score += 200;
                     output = @"
      ::::          ::           ::          :::      
     :sss:          ss         :ssss:        :sss:             Good
@@ -127,6 +132,7 @@ namespace Friday_Night_Hackin
                 }
                 else
                 {
+                    score += -200;
                     output = @"
      ::::          ::           ::          :::      
     :sss:          ss         :ssss:        :sss:             Shit
@@ -142,9 +148,12 @@ namespace Friday_Night_Hackin
             output += ScrollArrows(notes[(cycles)]);
             output += ScrollArrows(notes[(cycles+1)]);
             output += ScrollArrows(notes[(cycles+2)]);
+            WriteLine(score);
+            WriteLine(detectingHit);
+            WriteLine(bouttaHit);
             WriteLine(stopWatch.Elapsed.TotalMilliseconds);
             WriteLine(output);
-
+            
         }
         private static string ScrollArrows(int number)
         {
