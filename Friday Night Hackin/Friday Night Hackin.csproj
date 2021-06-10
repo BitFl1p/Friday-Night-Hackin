@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="Sounds\Bopeebo.wav" />
+    <None Remove="Sounds\Menu.wav" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Sounds\Bopeebo.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Menu.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
